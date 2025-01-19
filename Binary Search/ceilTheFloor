@@ -1,0 +1,57 @@
+// Ceil the Floor  
+
+int findFloor(vector<int> &a, int n, int x) {
+	int start = 0;
+	int end = n-1;
+	int ans = -1;
+
+	if(x < a[start]) {
+		return ans;
+	}
+
+	while(start <= end) {
+		int mid = start + (end - start)/2;
+
+		if(a[mid] <= x) {
+			ans = mid;
+			start = mid + 1;
+		}
+		else {
+			end = mid - 1;
+		}
+	}
+	return a[ans];
+}
+
+int findCeil(vector<int> &a, int n, int x) {
+	int start = 0;
+	int end = n-1;
+	int ans = -1;
+
+	if(x > a[end]) {
+		return ans;
+	}
+
+	while(start <= end) {
+		int mid = start + (end - start)/2;
+
+		if(a[mid] >= x) {
+			ans = mid;
+			end = mid - 1;
+		}
+		else {
+			start = mid + 1;
+		}
+	}
+	return a[ans];
+}
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+	pair<int, int> ans;
+
+	ans.first = findFloor(a, n, x);
+	ans.second = findCeil(a, n, x);
+
+	return ans;
+}
+
